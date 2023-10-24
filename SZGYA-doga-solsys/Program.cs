@@ -23,13 +23,15 @@ namespace SZGYA_doga_solsys
             Console.WriteLine($"\t\t{(van ? "van ilyen bolygó a naprendszerben" : "sajnos nincs ilyen bolygó a naprendszerben")}");
             Console.Write($"\t3.5: Írj be egy egész számot: ");
             int szam = int.Parse(Console.ReadLine());
-            var tobbHold = bolygok.Where(b => b.HoldSzam > szam);
+            var tobbHold = bolygok.Where(b => b.HoldSzam > szam).ToList();
             Console.WriteLine($"\ta következő bolygóknak van {szam}-nál/nél több holdja:");
-            Console.Write("\t\t");
-            foreach (var b in tobbHold)
+            Console.Write("\t\t[");
+            for (int i = 0; i < tobbHold.Count; i++)
             {
-                Console.Write($"{b.Nev}, ");
+                Console.Write($"'{tobbHold[i].Nev}'");
+                if (i != tobbHold.Count - 1) Console.Write(", ");
             }
+            Console.Write("]");
         }
     }
 }
